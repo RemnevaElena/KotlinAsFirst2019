@@ -159,8 +159,10 @@ fun collatzSteps(x: Int): Int{
  //   var cloneX : Int
     var xNext : Int
     var count : Int
-    xNext = x
-    count = 0
+    xNext = 0
+    if (x / 2 == 0) xNext = x / 2
+    else xNext = x * 3 + 1
+    count = 1
     while (xNext != 1){
         if (xNext / 2 == 0) xNext = xNext / 2
         else xNext = xNext * 3 + 1
@@ -209,7 +211,29 @@ fun revert(n: Int): Int = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun isPalindrome(n: Int): Boolean = TODO()
+fun isPalindrome(n: Int): Boolean {
+    var nContrary = 0
+    var digitNContrary = 0
+    var digitNClone = 0
+    var nClone = n
+    var count = 0
+    var count2 = 1
+    var count3 = 0
+    while (nClone != 0) {
+        nContrary = nContrary * 10 + nClone % 10
+        nClone = nClone / 10
+        count++
+    }
+    nClone = n
+    for (count2 in 1..count / 2){
+        if (nContrary % 10 == nClone % 10) count3++
+        else return false
+        nContrary /= 10
+        nClone /= 10
+    }
+    if (count3 == count /2) return true
+    else return false
+}
 
 /**
  * Средняя
@@ -219,7 +243,22 @@ fun isPalindrome(n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun hasDifferentDigits(n: Int): Boolean = TODO()
+fun hasDifferentDigits(n: Int): Boolean {
+    var nClone = n
+    var digit = nClone % 10
+    var n = 0
+    var count = 0
+    nClone /= 10
+    if (nClone == 0) return true
+    else while (nClone != 0) {
+        if (nClone % 10 == digit) count++
+        else return false
+        nClone /= 10
+        n++
+    }
+    if (n == count) return true
+    else return false
+}
 
 /**
  * Сложная
