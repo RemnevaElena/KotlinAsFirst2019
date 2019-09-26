@@ -67,7 +67,17 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
+fun digitNumber(n: Int): Int {
+    var number : Int
+    var n2 : Int
+    number = 0
+    n2 = n
+    while (n2 >= 0) {
+        n2 = n / 10
+        number += 1
+    }
+    return number
+}
 
 /**
  * Простая
@@ -75,7 +85,19 @@ fun digitNumber(n: Int): Int = TODO()
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+fun fib(n: Int): Int {
+    var fib1 = 1
+    var fib2 = 1
+    var fibn = 0
+    var count = 2
+    while (count <= n){
+        fibn = fib1 + fib2
+        fib1 = fib2
+        fib2 = fibn
+        count++
+    }
+    return fibn
+}
 
 /**
  * Простая
@@ -133,7 +155,19 @@ fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
  * Написать функцию, которая находит, сколько шагов требуется для
  * этого для какого-либо начального X > 0.
  */
-fun collatzSteps(x: Int): Int = TODO()
+fun collatzSteps(x: Int): Int{
+ //   var cloneX : Int
+    var xNext : Int
+    var count : Int
+    xNext = x
+    count = 0
+    while (xNext != 1){
+        if (xNext / 2 == 0) xNext = xNext / 2
+        else xNext = xNext * 3 + 1
+        count++
+    }
+    return count
+}
 
 /**
  * Средняя
