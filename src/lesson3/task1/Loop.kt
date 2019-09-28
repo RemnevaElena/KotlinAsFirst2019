@@ -4,6 +4,8 @@ package lesson3.task1
 
 import kotlin.math.sqrt
 
+
+
 /**
  * Пример
  *
@@ -246,17 +248,17 @@ fun isPalindrome(n: Int): Boolean {
 fun hasDifferentDigits(n: Int): Boolean {
     var nClone = n
     var digit = nClone % 10
-    var n = 0
+    var count2 = 1
     var count = 0
     nClone /= 10
     if (nClone == 0) return true
     else while (nClone != 0) {
-        if (nClone % 10 == digit) count++
-        else return false
+        if (nClone % 10 != digit) return false
+        else count++
         nClone /= 10
-        n++
+        count2++
     }
-    if (n == count) return true
+    if (count2 - 1 == count) return true
     else return false
 }
 
@@ -269,7 +271,35 @@ fun hasDifferentDigits(n: Int): Boolean {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+    var sumDigit = 0
+    var a = 1
+    var squareA = 0
+    var countDigit = 0
+    var count = 0
+    var squareA1 = 0
+    var digit = 0
+    while (sumDigit != n){
+        squareA = a * a
+        squareA1 =squareA
+        while (squareA1 != 0){
+            squareA1 /= 10
+            countDigit++
+        }
+        sumDigit += countDigit
+        if (sumDigit == n) return squareA % 10
+        if (sumDigit > n) {
+            while (sumDigit != n) {
+                digit = squareA % 10
+                squareA /= 10
+                sumDigit--
+            }
+            return digit
+        }
+        else a++
+    }
+    return -1
+}
 
 /**
  * Сложная
