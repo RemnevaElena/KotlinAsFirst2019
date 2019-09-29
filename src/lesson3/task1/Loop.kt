@@ -287,18 +287,19 @@ fun squareSequenceDigit(n: Int): Int {
             countDigit++
         }
         sumDigit += countDigit
+        countDigit = 0
         if (sumDigit == n) return squareA % 10
         if (sumDigit > n) {
             while (sumDigit != n) {
-                digit = squareA % 10
                 squareA /= 10
+                digit = squareA % 10
                 sumDigit--
             }
             return digit
         }
         else a++
     }
-    return -1
+    return 0
 }
 
 /**
@@ -310,4 +311,38 @@ fun squareSequenceDigit(n: Int): Int {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun fibSequenceDigit(n: Int): Int = TODO()
+fun fibSequenceDigit(n: Int): Int {
+    var sumDigit = 2
+    var fib1 = 1
+    var fib2 = 1
+    var fib3 = 0
+    var fib31 = 0
+    var countDigit = 0
+    var count = 0
+    var digit = 0
+    if (n == 1 || n == 2) return 1
+    while (sumDigit != n){
+        fib3 = fib1 + fib2
+        fib31 = fib3
+        while (fib31 != 0){
+            fib31 /= 10
+            countDigit++
+        }
+        sumDigit += countDigit
+        countDigit = 0
+        if (sumDigit == n) return fib3 % 10
+        if (sumDigit > n) {
+            while (sumDigit != n) {
+                fib3 /= 10
+                digit = fib3 % 10
+                sumDigit--
+            }
+            return digit
+        }
+        else {
+            fib1 = fib2
+            fib2 = fib3
+        }
+    }
+    return 0
+}
