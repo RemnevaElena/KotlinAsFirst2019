@@ -87,19 +87,7 @@ fun digitNumber(n: Int): Int {
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int {
-    var fib1 = 1
-    var fib2 = 1
-    var fibn = 0
-    var count = 2
-    while (count <= n){
-        fibn = fib1 + fib2
-        fib1 = fib2
-        fib2 = fibn
-        count++
-    }
-    return fibn
-}
+fun fib(n: Int): Int = TODO()
 
 /**
  * Простая
@@ -157,21 +145,7 @@ fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
  * Написать функцию, которая находит, сколько шагов требуется для
  * этого для какого-либо начального X > 0.
  */
-fun collatzSteps(x: Int): Int{
- //   var cloneX : Int
-    var xNext : Int
-    var count : Int
-    xNext = 0
-    if (x / 2 == 0) xNext = x / 2
-    else xNext = x * 3 + 1
-    count = 1
-    while (xNext != 1){
-        if (xNext / 2 == 0) xNext = xNext / 2
-        else xNext = xNext * 3 + 1
-        count++
-    }
-    return count
-}
+fun collatzSteps(x: Int): Int = TODO()
 
 /**
  * Средняя
@@ -245,22 +219,7 @@ fun isPalindrome(n: Int): Boolean {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun hasDifferentDigits(n: Int): Boolean {
-    var nClone = n
-    var digit = nClone % 10
-    var count2 = 1
-    var count = 0
-    nClone /= 10
-    if (nClone == 0) return true
-    else while (nClone != 0) {
-        if (nClone % 10 != digit) return false
-        else count++
-        nClone /= 10
-        count2++
-    }
-    if (count2 - 1 == count) return true
-    else return false
-}
+fun hasDifferentDigits(n: Int): Boolean = TODO()
 
 /**
  * Сложная
@@ -282,10 +241,7 @@ fun squareSequenceDigit(n: Int): Int {
     while (sumDigit != n){
         squareA = a * a
         squareA1 =squareA
-        while (squareA1 != 0){
-            squareA1 /= 10
-            countDigit++
-        }
+        countDigit =  digitNumber (squareA1)
         sumDigit += countDigit
         countDigit = 0
         if (sumDigit == n) return squareA % 10
@@ -324,10 +280,7 @@ fun fibSequenceDigit(n: Int): Int {
     while (sumDigit != n){
         fib3 = fib1 + fib2
         fib31 = fib3
-        while (fib31 != 0){
-            fib31 /= 10
-            countDigit++
-        }
+        countDigit = digitNumber (fib31)
         sumDigit += countDigit
         countDigit = 0
         if (sumDigit == n) return fib3 % 10
