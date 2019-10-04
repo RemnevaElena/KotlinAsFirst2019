@@ -71,12 +71,12 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  */
 fun digitNumber(n: Int): Int {
     var number : Int
-    var n2 : Int
+    var n2 = n
     number = 0
-    n2 = n
-    while (n2 >= 0) {
-        n2 = n / 10
-        number += 1
+    if (n2 == 0) return 1
+    else while (n2 > 0) {
+        n2 = n2 / 10
+        number++
     }
     return number
 }
