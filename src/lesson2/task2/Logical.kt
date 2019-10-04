@@ -31,7 +31,8 @@ fun isNumberHappy(number: Int): Boolean = number % 10 + number / 10 % 10 == numb
 fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean {
     if (x1 == x2 || y1 == y2) {
         return true
-    } else return abs(x2 - x1) == abs(y2 - y1)
+    }
+    return abs(x2 - x1) == abs(y2 - y1)
 }
 
 
@@ -65,17 +66,14 @@ fun circleInside(
  * Вернуть true, если кирпич пройдёт
  */
 fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
-    if (a <= s){
+    if (a <= s) {
         if (b <= r || c <= r) return true
-        else false
     }
-    if (b <= s){
+    if (b <= s) {
         if (a <= r || c <= r) return true
-        else false
     }
-    if (c <= s){
+    if (c <= s) {
         if (a <= r || b <= r) return true
-        else false
     }
     return false
 }
