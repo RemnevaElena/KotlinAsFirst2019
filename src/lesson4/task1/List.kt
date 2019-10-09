@@ -115,14 +115,22 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  * по формуле abs = sqrt(a1^2 + a2^2 + ... + aN^2).
  * Модуль пустого вектора считать равным 0.0.
  */
-fun abs(v: List<Double>): Double = TODO()
+fun squares1(list: List<Double>) = list.map { it * it }
+
+fun abs(v: List<Double>): Double {
+    var squareElement = squares1(v)
+    return sqrt(squareElement.sum())
+}
 
 /**
  * Простая
  *
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
-fun mean(list: List<Double>): Double = TODO()
+fun mean(list: List<Double>): Double {
+    if (list.isEmpty() == true) return 0.0
+        return list.sum() / list.size
+}
 
 /**
  * Средняя
@@ -132,7 +140,12 @@ fun mean(list: List<Double>): Double = TODO()
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun center(list: MutableList<Double>): MutableList<Double> = TODO()
+fun center(list: MutableList<Double>): MutableList<Double> {
+    val mean = mean(list)
+    if (list.isEmpty() == true) return list
+    for (i in 0 until list.size) list[i] = list[i] - mean
+    return list
+}
 
 /**
  * Средняя
@@ -141,7 +154,14 @@ fun center(list: MutableList<Double>): MutableList<Double> = TODO()
  * представленные в виде списков a и b. Скалярное произведение считать по формуле:
  * C = a1b1 + a2b2 + ... + aNbN. Произведение пустых векторов считать равным 0.
  */
-fun times(a: List<Int>, b: List<Int>): Int = TODO()
+fun times(a: List<Int>, b: List<Int>): Int {
+    var sum = 0
+    if (a.isEmpty() == b.isEmpty() && a.isEmpty() == true) return 0
+    for (i in 0 until a.size) {
+        sum = sum + a[i] * b[i]
+    }
+    return sum
+}
 
 /**
  * Средняя
@@ -151,7 +171,21 @@ fun times(a: List<Int>, b: List<Int>): Int = TODO()
  * Коэффициенты многочлена заданы списком p: (p0, p1, p2, p3, ..., pN).
  * Значение пустого многочлена равно 0 при любом x.
  */
-fun polynom(p: List<Int>, x: Int): Int = TODO()
+fun pow (x : Int, i : Int): Int {
+    var r = 1
+    for (j in 0 until i) r *= x
+    return r
+}
+fun polynom(p: List<Int>, x: Int): Int {
+    var Px = 0
+    var X = x
+    if (p.isEmpty() == true) return 0
+    for (i in 0 until p.size) {
+        Px = Px + p[i] * pow(x, i)
+    }
+    return Px
+
+}
 
 /**
  * Средняя
@@ -163,7 +197,13 @@ fun polynom(p: List<Int>, x: Int): Int = TODO()
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun accumulate(list: MutableList<Int>): MutableList<Int> = TODO()
+fun accumulate(list: MutableList<Int>): MutableList<Int> {
+    if (list.isEmpty() == true) return list
+    for (i in 1 until list.size) {
+        list[i] = list[i-1] + list[i]
+    }
+    return list
+}
 
 /**
  * Средняя
@@ -172,7 +212,21 @@ fun accumulate(list: MutableList<Int>): MutableList<Int> = TODO()
  * Результат разложения вернуть в виде списка множителей, например 75 -> (3, 5, 5).
  * Множители в списке должны располагаться по возрастанию.
  */
-fun factorize(n: Int): List<Int> = TODO()
+НЕ ДОДЕЛАНА. не ругайтесь, пожалуйста
+fun factorize(n: Int): List<Int> {
+    var list : MutableList<Int>
+    var n1 = sqrt(n.toDouble())
+    var n2 = n
+    var i = 2
+    while (i <= n1) {
+        while (n2 % i == 0) {
+            list.add(i)
+            n2 /= i
+        }
+        i++
+    }
+    return list
+}
 
 /**
  * Сложная
@@ -190,7 +244,31 @@ fun factorizeToString(n: Int): String = TODO()
  * Результат перевода вернуть в виде списка цифр в base-ичной системе от старшей к младшей,
  * например: n = 100, base = 4 -> (1, 2, 1, 0) или n = 250, base = 14 -> (1, 3, 12)
  */
-fun convert(n: Int, base: Int): List<Int> = TODO()
+НЕ ДОДЕЛАНА. не ругайтесь, пожалуйста
+fun otstoiIdea (n: Int, base : Int): Int {
+    var k = 1
+    while (n >= k) {
+        k = k * base
+    }
+    k /= base
+    return k
+}
+fun convert(n: Int, base: Int): List<Int> {
+    var list : List<Int> = emptyList()
+    var k : Int
+    var n1 = n
+    var count = 0
+    while (n1 > 0) {
+        k = otstoiIdea(n1, base)
+        while (n1 >= k) {
+            n1 = n1 - k
+            count++
+        }
+        list + count
+        count = 0
+    }
+    return list
+}
 
 /**
  * Сложная
