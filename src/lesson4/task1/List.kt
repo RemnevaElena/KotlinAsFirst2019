@@ -3,6 +3,7 @@
 package lesson4.task1
 
 import lesson1.task1.discriminant
+import java.io.File.separator
 import kotlin.math.sqrt
 
 /**
@@ -212,10 +213,10 @@ fun accumulate(list: MutableList<Int>): MutableList<Int> {
  * Результат разложения вернуть в виде списка множителей, например 75 -> (3, 5, 5).
  * Множители в списке должны располагаться по возрастанию.
  */
-НЕ ДОДЕЛАНА. не ругайтесь, пожалуйста
+
 fun factorize(n: Int): List<Int> {
-    var list : MutableList<Int>
-    var n1 = sqrt(n.toDouble())
+    var list = mutableListOf<Int>()
+    var n1 = n / 2
     var n2 = n
     var i = 2
     while (i <= n1) {
@@ -225,6 +226,10 @@ fun factorize(n: Int): List<Int> {
         }
         i++
     }
+    if (n2 > 1) {
+        list.add(n)
+    }
+    list.toList()
     return list
 }
 
@@ -235,7 +240,7 @@ fun factorize(n: Int): List<Int> {
  * Результат разложения вернуть в виде строки, например 75 -> 3*5*5
  * Множители в результирующей строке должны располагаться по возрастанию.
  */
-fun factorizeToString(n: Int): String = TODO()
+fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*")
 
 /**
  * Средняя
@@ -244,7 +249,7 @@ fun factorizeToString(n: Int): String = TODO()
  * Результат перевода вернуть в виде списка цифр в base-ичной системе от старшей к младшей,
  * например: n = 100, base = 4 -> (1, 2, 1, 0) или n = 250, base = 14 -> (1, 3, 12)
  */
-НЕ ДОДЕЛАНА. не ругайтесь, пожалуйста
+не работает пока что
 fun otstoiIdea (n: Int, base : Int): Int {
     var k = 1
     while (n >= k) {
@@ -253,19 +258,34 @@ fun otstoiIdea (n: Int, base : Int): Int {
     k /= base
     return k
 }
+fun countDegree (n: Int, base : Int): Int {
+    var k = 1
+    var count = 0
+    while (n >= k) {
+        k = k * base
+        count++
+    }
+    count--
+    return count
+}
 fun convert(n: Int, base: Int): List<Int> {
-    var list : List<Int> = emptyList()
-    var k : Int
+    var list = mutableListOf<Int>()
     var n1 = n
     var count = 0
+    var b = countDegree(n1, base)
     while (n1 > 0) {
-        k = otstoiIdea(n1, base)
+        var k = otstoiIdea(n1, base)
         while (n1 >= k) {
             n1 = n1 - k
             count++
         }
-        list + count
+        list.add(count)
         count = 0
+        b--
+    }
+    while (b != 0) {
+        list.add(0)
+        b--
     }
     return list
 }
@@ -290,7 +310,18 @@ fun convertToString(n: Int, base: Int): String = TODO()
  * из системы счисления с основанием base в десятичную.
  * Например: digits = (1, 3, 12), base = 14 -> 250
  */
-fun decimal(digits: List<Int>, base: Int): Int = TODO()
+fun decimal(digits: List<Int>, base: Int): Int {
+    var quantity = digits.size - 1
+    var result = 0
+    var base1 = 1
+    digits.toMutableList()
+    while (quantity != -1) {
+        result += digits[quantity] * base1
+        base1 *= base
+        quantity--
+    }
+    return result
+}
 
 /**
  * Сложная
