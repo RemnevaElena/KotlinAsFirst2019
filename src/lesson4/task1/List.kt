@@ -249,7 +249,7 @@ fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*
  * Результат перевода вернуть в виде списка цифр в base-ичной системе от старшей к младшей,
  * например: n = 100, base = 4 -> (1, 2, 1, 0) или n = 250, base = 14 -> (1, 3, 12)
  */
-не работает пока что
+    //не работает пока что
 fun otstoiIdea (n: Int, base : Int): Int {
     var k = 1
     while (n >= k) {

@@ -94,11 +94,11 @@ fun whichRookThreatens(
     rookX2: Int, rookY2: Int
 ): Int {
     if (kingX == rookX1 || kingY == rookY1) {
-        if (rookX2 == kingX || rookY2 == kingY) return 3
-        return 1
+        if (rookX2 == kingX || rookY2 == kingY)  3
+        else 1
     }
-    else if (rookX2 == kingX || rookY2 == kingY) return 2
-        else return 0
+    else if (rookX2 == kingX || rookY2 == kingY) 2
+    else 0
 }
 
 /**
@@ -136,6 +136,6 @@ fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
  * Если пересечения нет, вернуть -1.
  */
 fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
-    if ( min(b, d) - max(a, c) >= 0) return min(b, d) - max(a, c)
+    if ( min(b, d) - max(a, c) >= 0) min(b, d) - max(a, c)
     return -1
 }
