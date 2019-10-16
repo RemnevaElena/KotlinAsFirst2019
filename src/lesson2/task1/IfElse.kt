@@ -98,7 +98,7 @@ fun whichRookThreatens(
         else 1
     }
     else if (rookX2 == kingX || rookY2 == kingY) 2
-    else 0
+    return 0
 }
 
 /**
