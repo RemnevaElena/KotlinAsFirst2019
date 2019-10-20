@@ -351,66 +351,105 @@ fun roman(n: Int): String = TODO()
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
-//не доделана
+//мне подчеркивает очень много синтаксических ошибок, которые я не могу найти(( можете подсказать
+//почему у меня в 403 и далее в функции подчеркивает "+" и не компилирует
+fun forSixAndThree(rewers: Int, rus: String): String {
+    var k = rewers % 10
+    when {
+        k == 9 -> return rus + "девятьсот"
+        k == 8 -> return rus + "восемьсот"
+        k == 7 -> return rus + "семьсот"
+        k == 6 -> return rus + "шестьсот"
+        k == 5 -> return rus + "пятьсот"
+        k == 4 -> return rus + "четыреста"
+        k == 3 -> return rus + "триста"
+        k == 2 -> return rus + "двести"
+        else -> return rus + "сто"
+    }
+}
+
+fun forFiveAndTwo(rewers: Int, count: Int, rus: String): String {
+    var k = rewers % 10
+    when {
+        k == 9 -> return rus + "девяносто"
+        k == 8 -> return rus + "восемьдесят"
+        k == 7 -> return rus + "семьдесят"
+        k == 6 -> return rus + "шестьдесят"
+        k == 5 -> return rus + "пятьдесят"
+        k == 4 -> return rus + "сорок"
+        k == 3 -> return rus + "тридцать"
+        k == 2 -> return rus + "двадцать"
+        else -> {
+            rewers /= 10
+            var a = rewers % 10
+            when {
+                k == 9 -> rus += "девятнадцать"
+                k == 8 -> rus += "восемьнадцать"
+                k == 7 -> rus += "семьнадцать"
+                k == 6 -> rus += "шестнадцать"
+                k == 5 -> rus += "пятнадцать"
+                k == 4 -> rus += "четырнадцать"
+                k == 3 -> rus += "тринадцать"
+                k == 2 -> rus += "двенадцать"
+                k == 1 -> rus += "одиннадцать"
+                k == 0 -> rus += "десять"
+            }
+            count--
+            if (count == 4) rus = rus + "тысяч"
+            return rus
+        }
+    }
+}
+
+fun forFourAndOne(rewers: Int, rus: Int): String {
+    var k = rewers % 10
+    when {
+        k == 9 -> return rus + "девять"
+        k == 8 -> return rus + "восемь"
+        k == 7 -> return rus + "семь"
+        k == 6 -> return rus + "шесть"
+        k == 5 -> return rus + "пять"
+        k == 4 -> return rus + "четыре"
+        k == 3 -> return rus + "трис"
+        k == 2 -> return rus + "два"
+        else -> return rus + "один"
+    }
+}
+
 fun russian(n: Int): String {
     var rus: String
     var rewers = 0
     var count = 0
-    while (n != 0) {
+    var n1 = n
+    while (n1 != 0) {
         val a = n % 10
         rewers = rewers * 10 + a
-        n /= 10
+        n1 /= 10
         count++
     }
-    if (count == 6 && count == 3) {
-        var k = rewers % 10
+    while (rewers != 0) {
         when {
-            k == 9 -> rus = "девятьсот"
-            k == 8 -> rus = "восемьсот"
-            k == 7 -> rus = "семьсот"
-            k == 6 -> rus = "шестьсот"
-            k == 5 -> rus = "пятьсот"
-            k == 4 -> rus = "четыреста"
-            k == 3 -> rus = "триста"
-            k == 2 -> rus = "двести"
-            k == 1 -> rus = "сто"
-        }
-        count--
-        rewers /= 10
-    }
-    if (count == 5 && count == 2) {
-        var k = rewers % 10
-        when {
-            k == 9 -> rus = rus + "девяносто"
-            k == 8 -> rus = rus + "восемьдесят"
-            k == 7 -> rus = rus + "семьдесят"
-            k == 6 -> rus = rus + "шестьдесят"
-            k == 5 -> rus = rus + "пятьдесят"
-            k == 4 -> rus = rus + "сорок"
-            k == 3 -> rus = rus + "тридцать"
-            k == 2 -> rus = rus + "двадцать"
-            k == 1 -> {
-                rewers /= 10
-                var a = rewers % 10
-                when {
-                    k == 9 -> rus = rus + "девятнадцать"
-                    k == 8 -> rus = rus + "восемьнадцать"
-                    k == 7 -> rus = rus + "семьнадцать"
-                    k == 6 -> rus = rus + "шестнадцать"
-                    k == 5 -> rus = rus + "пятнадцать"
-                    k == 4 -> rus = rus + "четырнадцать"
-                    k == 3 -> rus = rus + "тринадцать"
-                    k == 2 -> rus = rus + "двенадцать"
-                    k == 1 -> rus = rus + "одиннадцать"
-                    k == 0 -> rus = rus + "десять"
-                }
+            count == 6 || count == 3 -> {
+                rus = forSixAndThree(rewers, rus)
                 count--
-                if (count == 4) rus = rus + "тысяч"
+                rewers /= 10
+            }
+            count == 5 || count == 2 -> {
+                rus = forSixAndThree(rewers, rus)
+                if (rewers % 10 == 1) {
+                    count -= 2
+                    rewers /= 100
+                } else {
+                    count--
+                    rewers /= 10
+                }
+            }
+            count == 4 || count == 1 -> {
+                rus = forFourAndOne(rewers, rus)
+                count--
+                rewers /= 10
             }
         }
-        count--
-        rewers /= 10
     }
-
-
+    return rus
 }
