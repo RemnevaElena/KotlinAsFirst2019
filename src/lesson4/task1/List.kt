@@ -351,4 +351,66 @@ fun roman(n: Int): String = TODO()
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
-fun russian(n: Int): String = TODO()
+//не доделана
+fun russian(n: Int): String {
+    var rus: String
+    var rewers = 0
+    var count = 0
+    while (n != 0) {
+        val a = n % 10
+        rewers = rewers * 10 + a
+        n /= 10
+        count++
+    }
+    if (count == 6 && count == 3) {
+        var k = rewers % 10
+        when {
+            k == 9 -> rus = "девятьсот"
+            k == 8 -> rus = "восемьсот"
+            k == 7 -> rus = "семьсот"
+            k == 6 -> rus = "шестьсот"
+            k == 5 -> rus = "пятьсот"
+            k == 4 -> rus = "четыреста"
+            k == 3 -> rus = "триста"
+            k == 2 -> rus = "двести"
+            k == 1 -> rus = "сто"
+        }
+        count--
+        rewers /= 10
+    }
+    if (count == 5 && count == 2) {
+        var k = rewers % 10
+        when {
+            k == 9 -> rus = rus + "девяносто"
+            k == 8 -> rus = rus + "восемьдесят"
+            k == 7 -> rus = rus + "семьдесят"
+            k == 6 -> rus = rus + "шестьдесят"
+            k == 5 -> rus = rus + "пятьдесят"
+            k == 4 -> rus = rus + "сорок"
+            k == 3 -> rus = rus + "тридцать"
+            k == 2 -> rus = rus + "двадцать"
+            k == 1 -> {
+                rewers /= 10
+                var a = rewers % 10
+                when {
+                    k == 9 -> rus = rus + "девятнадцать"
+                    k == 8 -> rus = rus + "восемьнадцать"
+                    k == 7 -> rus = rus + "семьнадцать"
+                    k == 6 -> rus = rus + "шестнадцать"
+                    k == 5 -> rus = rus + "пятнадцать"
+                    k == 4 -> rus = rus + "четырнадцать"
+                    k == 3 -> rus = rus + "тринадцать"
+                    k == 2 -> rus = rus + "двенадцать"
+                    k == 1 -> rus = rus + "одиннадцать"
+                    k == 0 -> rus = rus + "десять"
+                }
+                count--
+                if (count == 4) rus = rus + "тысяч"
+            }
+        }
+        count--
+        rewers /= 10
+    }
+
+
+}
