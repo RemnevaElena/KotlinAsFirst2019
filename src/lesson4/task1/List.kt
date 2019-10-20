@@ -119,7 +119,7 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
 fun squares1(list: List<Double>) = list.map { it * it }
 
 fun abs(v: List<Double>): Double {
-    var squareElement = squares1(v)
+    val squareElement = squares1(v)
     return sqrt(squareElement.sum())
 }
 
@@ -129,8 +129,8 @@ fun abs(v: List<Double>): Double {
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
 fun mean(list: List<Double>): Double {
-    if (list.isEmpty() == true) return 0.0
-        return list.sum() / list.size
+    if (list.isEmpty()) return 0.0
+    return list.sum() / list.size
 }
 
 /**
@@ -143,7 +143,7 @@ fun mean(list: List<Double>): Double {
  */
 fun center(list: MutableList<Double>): MutableList<Double> {
     val mean = mean(list)
-    if (list.isEmpty() == true) return list
+    if (list.isEmpty()) return list
     for (i in 0 until list.size) list[i] = list[i] - mean
     return list
 }
@@ -157,9 +157,9 @@ fun center(list: MutableList<Double>): MutableList<Double> {
  */
 fun times(a: List<Int>, b: List<Int>): Int {
     var sum = 0
-    if (a.isEmpty() == b.isEmpty() && a.isEmpty() == true) return 0
+    if (a.isEmpty() && a.isEmpty()) return 0
     for (i in 0 until a.size) {
-        sum = sum + a[i] * b[i]
+        sum += a[i] * b[i]
     }
     return sum
 }
@@ -172,19 +172,19 @@ fun times(a: List<Int>, b: List<Int>): Int {
  * Коэффициенты многочлена заданы списком p: (p0, p1, p2, p3, ..., pN).
  * Значение пустого многочлена равно 0 при любом x.
  */
-fun pow (x : Int, i : Int): Int {
+fun pow(x: Int, i: Int): Int {
     var r = 1
     for (j in 0 until i) r *= x
     return r
 }
+
 fun polynom(p: List<Int>, x: Int): Int {
-    var Px = 0
-    var X = x
-    if (p.isEmpty() == true) return 0
+    var px = 0
+    if (p.isEmpty()) return 0
     for (i in 0 until p.size) {
-        Px = Px + p[i] * pow(x, i)
+        px = px + p[i] * pow(x, i)
     }
-    return Px
+    return px
 
 }
 
@@ -199,9 +199,9 @@ fun polynom(p: List<Int>, x: Int): Int {
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
 fun accumulate(list: MutableList<Int>): MutableList<Int> {
-    if (list.isEmpty() == true) return list
+    if (list.isEmpty()) return list
     for (i in 1 until list.size) {
-        list[i] = list[i-1] + list[i]
+        list[i] = list[i - 1] + list[i]
     }
     return list
 }
@@ -215,8 +215,8 @@ fun accumulate(list: MutableList<Int>): MutableList<Int> {
  */
 
 fun factorize(n: Int): List<Int> {
-    var list = mutableListOf<Int>()
-    var n1 = n / 2
+    val list = mutableListOf<Int>()
+    val n1 = n / 2
     var n2 = n
     var i = 2
     while (i <= n1) {
@@ -229,7 +229,6 @@ fun factorize(n: Int): List<Int> {
     if (n2 > 1) {
         list.add(n)
     }
-    list.toList()
     return list
 }
 
@@ -250,7 +249,7 @@ fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*
  * например: n = 100, base = 4 -> (1, 2, 1, 0) или n = 250, base = 14 -> (1, 3, 12)
  */
 //не работает
-fun otstoiIdea (n: Int, base : Int): Int {
+fun numberDegree(n: Int, base: Int): Int {
     var k = 1
     while (n >= k) {
         k = k * base
@@ -258,7 +257,8 @@ fun otstoiIdea (n: Int, base : Int): Int {
     k /= base
     return k
 }
-fun countDegree (n: Int, base : Int): Int {
+
+fun countDegree(n: Int, base: Int): Int {
     var k = 1
     var count = 0
     while (n >= k) {
@@ -268,17 +268,15 @@ fun countDegree (n: Int, base : Int): Int {
     count--
     return count
 }
+
 fun convert(n: Int, base: Int): List<Int> {
-    var list = mutableListOf<Int>()
+    val list = mutableListOf<Int>()
     var n1 = n
     var count = 0
     var b = countDegree(n1, base)
     while (n1 > 0) {
-        var k = otstoiIdea(n1, base)
-        while (n1 >= k) {
-            n1 = n1 - k
-            count++
-        }
+        val k = numberDegree(n1, base)
+        count = (n1 - k) / k
         list.add(count)
         count = 0
         b--
@@ -314,7 +312,6 @@ fun decimal(digits: List<Int>, base: Int): Int {
     var quantity = digits.size - 1
     var result = 0
     var base1 = 1
-    digits.toMutableList()
     while (quantity != -1) {
         result += digits[quantity] * base1
         base1 *= base
