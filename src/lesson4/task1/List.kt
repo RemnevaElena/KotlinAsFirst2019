@@ -143,7 +143,6 @@ fun mean(list: List<Double>): Double {
  */
 fun center(list: MutableList<Double>): MutableList<Double> {
     val mean = mean(list)
-    if (list.isEmpty()) return list
     for (i in 0 until list.size) list[i] = list[i] - mean
     return list
 }
@@ -157,7 +156,7 @@ fun center(list: MutableList<Double>): MutableList<Double> {
  */
 fun times(a: List<Int>, b: List<Int>): Int {
     var sum = 0
-    if (a.isEmpty() && a.isEmpty()) return 0
+    if (a.isEmpty() && b.isEmpty()) return 0
     for (i in 0 until a.size) {
         sum += a[i] * b[i]
     }
@@ -180,7 +179,6 @@ fun pow(x: Int, i: Int): Int {
 
 fun polynom(p: List<Int>, x: Int): Int {
     var px = 0
-    if (p.isEmpty()) return 0
     for (i in 0 until p.size) {
         px = px + p[i] * pow(x, i)
     }
@@ -199,7 +197,6 @@ fun polynom(p: List<Int>, x: Int): Int {
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
 fun accumulate(list: MutableList<Int>): MutableList<Int> {
-    if (list.isEmpty()) return list
     for (i in 1 until list.size) {
         list[i] = list[i - 1] + list[i]
     }
@@ -401,7 +398,7 @@ fun forFiveAndTwo(rewers: Int, count: Int, rus: String): String {
     }
 }
 
-fun forFourAndOne(rewers: Int, rus: Int): String {
+fun forFourAndOne(rewers: Int, rus: String): String {
     var k = rewers % 10
     when {
         k == 9 -> return rus + "девять"
