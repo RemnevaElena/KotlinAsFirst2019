@@ -348,91 +348,124 @@ fun roman(n: Int): String = TODO()
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
-//мне подчеркивает очень много синтаксических ошибок, которые я не могу найти(( можете подсказать
-//почему у меня в 403 и далее в функции подчеркивает "+" и не компилирует
-fun forSixAndThree(rewers: Int, rus: String): String {
+
+fun forSixAndThree(rewers: Int, count: Int, rus: String, count2: Int): String {
     var k = rewers % 10
+    var rus1 = rus
+    if (k == 0) return rus1
+    //if (count2 != count)  rus1 += " "
     when {
-        k == 9 -> return rus + "девятьсот"
-        k == 8 -> return rus + "восемьсот"
-        k == 7 -> return rus + "семьсот"
-        k == 6 -> return rus + "шестьсот"
-        k == 5 -> return rus + "пятьсот"
-        k == 4 -> return rus + "четыреста"
-        k == 3 -> return rus + "триста"
-        k == 2 -> return rus + "двести"
-        else -> return rus + "сто"
+        k == 9 -> return rus1 + "девятьсот "
+        k == 8 -> return rus1 + "восемьсот "
+        k == 7 -> return rus1 + "семьсот "
+        k == 6 -> return rus1 + "шестьсот "
+        k == 5 -> return rus1 + "пятьсот "
+        k == 4 -> return rus1 + "четыреста "
+        k == 3 -> return rus1 + "триста "
+        k == 2 -> return rus1 + "двести "
+        k == 0 -> return rus1
+        else -> return rus1 + "сто "
     }
 }
 
-fun forFiveAndTwo(rewers: Int, count: Int, rus: String): String {
+fun forFiveAndTwo(rewers: Int, count: Int, rus: String, count2: Int): String {
     var k = rewers % 10
+    var rewers1 = rewers
+    var rus1 = rus
+    var count1 = count
+    //if (count2 != count)  rus1 += " "
+    if (k == 0) return rus1
     when {
-        k == 9 -> return rus + "девяносто"
-        k == 8 -> return rus + "восемьдесят"
-        k == 7 -> return rus + "семьдесят"
-        k == 6 -> return rus + "шестьдесят"
-        k == 5 -> return rus + "пятьдесят"
-        k == 4 -> return rus + "сорок"
-        k == 3 -> return rus + "тридцать"
-        k == 2 -> return rus + "двадцать"
+        k == 9 -> return rus1 + "девяносто "
+        k == 8 -> return rus1 + "восемьдесят "
+        k == 7 -> return rus1 + "семьдесят "
+        k == 6 -> return rus1 + "шестьдесят "
+        k == 5 -> return rus1 + "пятьдесят "
+        k == 4 -> return rus1 + "сорок "
+        k == 3 -> return rus1 + "тридцать "
+        k == 2 -> return rus1 + "двадцать "
+        k == 0 -> return rus1
         else -> {
-            rewers /= 10
-            var a = rewers % 10
+            rewers1 /= 10
+            var a = rewers1 % 10
             when {
-                k == 9 -> rus += "девятнадцать"
-                k == 8 -> rus += "восемьнадцать"
-                k == 7 -> rus += "семьнадцать"
-                k == 6 -> rus += "шестнадцать"
-                k == 5 -> rus += "пятнадцать"
-                k == 4 -> rus += "четырнадцать"
-                k == 3 -> rus += "тринадцать"
-                k == 2 -> rus += "двенадцать"
-                k == 1 -> rus += "одиннадцать"
-                k == 0 -> rus += "десять"
+                a == 9 -> rus1 += "девятнадцать "
+                a == 8 -> rus1 += "восемьнадцать "
+                a == 7 -> rus1 += "семьнадцать "
+                a == 6 -> rus1 += "шестнадцать "
+                a == 5 -> rus1 += "пятнадцать "
+                a == 4 -> rus1 += "четырнадцать "
+                a == 3 -> rus1 += "тринадцать "
+                a == 2 -> rus1 += "двенадцать "
+                a == 1 -> rus1 += "одиннадцать "
+                a == 0 -> rus1 += "десять "
             }
-            count--
-            if (count == 4) rus = rus + "тысяч"
-            return rus
+            count1--
+            if (count1 == 4) rus1 = rus1 + "тысяч "
+            return rus1
         }
     }
 }
 
-fun forFourAndOne(rewers: Int, rus: String): String {
+fun forFourAndOne(rewers: Int, count: Int, rus: String, count2: Int): String {
     var k = rewers % 10
+    var rus1 = rus
+    //if (count == 1 && k != 0) rus1 = rus1 +  " "
+    if (k == 0 && count == 4) return rus1 + "тысяч "
+    //if (count == 4) rus1 = rus1 +  " "
+    if (k == 0 && count == 1) return rus1
     when {
-        k == 9 -> return rus + "девять"
-        k == 8 -> return rus + "восемь"
-        k == 7 -> return rus + "семь"
-        k == 6 -> return rus + "шесть"
-        k == 5 -> return rus + "пять"
-        k == 4 -> return rus + "четыре"
-        k == 3 -> return rus + "трис"
-        k == 2 -> return rus + "два"
-        else -> return rus + "один"
+        k == 9 -> if (count == 4) return rus1 + "девять тысяч "
+        else rus1 + "девять"
+        k == 8 -> if (count == 4) return rus1 + "восемь тысяч "
+        else return rus1 + "восемь"
+        k == 7 -> if (count == 4) return rus1 + "семь тысяч "
+        else return rus1 + "семь"
+        k == 6 -> if (count == 4) return rus1 + "шесть тысяч "
+        else return rus1 + "шесть"
+        k == 5 -> if (count == 4) return rus1 + "пять тысяч "
+        else return rus1 + "пять"
+        k == 4 -> if (count == 4) return rus1 + "четыре тысячи "
+        else return rus1 + "четыре"
+        k == 3 -> if (count == 4) return rus1 + "три тысячи "
+        else return rus1 + "три"
+        k == 2 -> if (count == 4) return rus1 + "две тысячи "
+        else return rus1 + "два"
+        else -> if (count == 4) return rus1 + "одна тысяча "
+        else return rus1 + "один"
     }
+    if (count == 4) return rus1 + "тысяч "
+    return rus1
 }
 
+//fun delete(rus : String): String {
+//    var lastSymbol = rus.last()
+//    var rus1 = ""
+//    if (lastSymbol == ' ') for (i in 0..rus.length-2) rus1 += rus[i]
+//    return rus1
+//}
+
 fun russian(n: Int): String {
-    var rus: String
+    var rus = ""
     var rewers = 0
     var count = 0
     var n1 = n
     while (n1 != 0) {
-        val a = n % 10
+        val a = n1 % 10
         rewers = rewers * 10 + a
         n1 /= 10
         count++
     }
-    while (rewers != 0) {
+    var count2 = count
+    while (count != 0) {
         when {
             count == 6 || count == 3 -> {
-                rus = forSixAndThree(rewers, rus)
+                rus = forSixAndThree(rewers, count, rus, count2)
                 count--
                 rewers /= 10
             }
             count == 5 || count == 2 -> {
-                rus = forSixAndThree(rewers, rus)
+                rus = forFiveAndTwo(rewers, count, rus, count2)
                 if (rewers % 10 == 1) {
                     count -= 2
                     rewers /= 100
@@ -442,11 +475,11 @@ fun russian(n: Int): String {
                 }
             }
             count == 4 || count == 1 -> {
-                rus = forFourAndOne(rewers, rus)
+                rus = forFourAndOne(rewers, count, rus, count2)
                 count--
                 rewers /= 10
             }
         }
     }
-    return rus
+    return rus.trim()
 }
