@@ -391,7 +391,7 @@ fun forFiveAndTwo(rewers: Int, count: Int, rus: String, count2: Int): String {
             when {
                 a == 9 -> rus1 += "девятнадцать "
                 a == 8 -> rus1 += "восемьнадцать "
-                a == 7 -> rus1 += "семьнадцать "
+                a == 7 -> rus1 += "семнадцать "
                 a == 6 -> rus1 += "шестнадцать "
                 a == 5 -> rus1 += "пятнадцать "
                 a == 4 -> rus1 += "четырнадцать "
