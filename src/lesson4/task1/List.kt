@@ -390,7 +390,7 @@ fun forFiveAndTwo(rewers: Int, count: Int, rus: String, count2: Int): String {
             var a = rewers1 % 10
             when {
                 a == 9 -> rus1 += "девятнадцать "
-                a == 8 -> rus1 += "восемьнадцать "
+                a == 8 -> rus1 += "восемнадцать "
                 a == 7 -> rus1 += "семнадцать "
                 a == 6 -> rus1 += "шестнадцать "
                 a == 5 -> rus1 += "пятнадцать "
