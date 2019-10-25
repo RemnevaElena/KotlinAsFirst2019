@@ -416,7 +416,7 @@ fun forFourAndOne(rewers: Int, count: Int, rus: String, count2: Int): String {
     if (k == 0 && count == 1) return rus1
     when {
         k == 9 -> if (count == 4) return rus1 + "девять тысяч "
-        else rus1 + "девять"
+        else return rus1 + "девять"
         k == 8 -> if (count == 4) return rus1 + "восемь тысяч "
         else return rus1 + "восемь"
         k == 7 -> if (count == 4) return rus1 + "семь тысяч "
@@ -434,7 +434,7 @@ fun forFourAndOne(rewers: Int, count: Int, rus: String, count2: Int): String {
         else -> if (count == 4) return rus1 + "одна тысяча "
         else return rus1 + "один"
     }
-    if (count == 4) return rus1 + "тысяч "
+    //if (count == 4) return rus1 + "тысяч "
     return rus1
 }
 
