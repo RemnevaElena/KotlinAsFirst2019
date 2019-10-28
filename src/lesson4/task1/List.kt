@@ -350,30 +350,27 @@ fun roman(n: Int): String = TODO()
  */
 
 fun forSixAndThree(rewers: Int, count: Int, rus: String, count2: Int): String {
-    var k = rewers % 10
-    var rus1 = rus
-    if (k == 0) return rus1
-    //if (count2 != count)  rus1 += " "
+    val k = rewers % 10
+    if (k == 0) return rus
     when {
-        k == 9 -> return rus1 + "девятьсот "
-        k == 8 -> return rus1 + "восемьсот "
-        k == 7 -> return rus1 + "семьсот "
-        k == 6 -> return rus1 + "шестьсот "
-        k == 5 -> return rus1 + "пятьсот "
-        k == 4 -> return rus1 + "четыреста "
-        k == 3 -> return rus1 + "триста "
-        k == 2 -> return rus1 + "двести "
-        k == 0 -> return rus1
-        else -> return rus1 + "сто "
+        k == 9 -> return rus + "девятьсот "
+        k == 8 -> return rus + "восемьсот "
+        k == 7 -> return rus + "семьсот "
+        k == 6 -> return rus + "шестьсот "
+        k == 5 -> return rus + "пятьсот "
+        k == 4 -> return rus + "четыреста "
+        k == 3 -> return rus + "триста "
+        k == 2 -> return rus + "двести "
+        k == 0 -> return rus
+        else -> return rus + "сто "
     }
 }
 
 fun forFiveAndTwo(rewers: Int, count: Int, rus: String, count2: Int): String {
-    var k = rewers % 10
+    val k = rewers % 10
     var rewers1 = rewers
     var rus1 = rus
     var count1 = count
-    //if (count2 != count)  rus1 += " "
     if (k == 0) return rus1
     when {
         k == 9 -> return rus1 + "девяносто "
@@ -387,7 +384,7 @@ fun forFiveAndTwo(rewers: Int, count: Int, rus: String, count2: Int): String {
         k == 0 -> return rus1
         else -> {
             rewers1 /= 10
-            var a = rewers1 % 10
+            val a = rewers1 % 10
             when {
                 a == 9 -> rus1 += "девятнадцать "
                 a == 8 -> rus1 += "восемнадцать "
@@ -408,42 +405,49 @@ fun forFiveAndTwo(rewers: Int, count: Int, rus: String, count2: Int): String {
 }
 
 fun forFourAndOne(rewers: Int, count: Int, rus: String, count2: Int): String {
-    var k = rewers % 10
-    var rus1 = rus
-    //if (count == 1 && k != 0) rus1 = rus1 +  " "
-    if (k == 0 && count == 4) return rus1 + "тысяч "
-    //if (count == 4) rus1 = rus1 +  " "
-    if (k == 0 && count == 1) return rus1
+    val k = rewers % 10
+    if (k == 0 && count == 4) return rus + "тысяч "
+    if (k == 0 && count == 1) return rus
     when {
-        k == 9 -> if (count == 4) return rus1 + "девять тысяч "
-        else return rus1 + "девять"
-        k == 8 -> if (count == 4) return rus1 + "восемь тысяч "
-        else return rus1 + "восемь"
-        k == 7 -> if (count == 4) return rus1 + "семь тысяч "
-        else return rus1 + "семь"
-        k == 6 -> if (count == 4) return rus1 + "шесть тысяч "
-        else return rus1 + "шесть"
-        k == 5 -> if (count == 4) return rus1 + "пять тысяч "
-        else return rus1 + "пять"
-        k == 4 -> if (count == 4) return rus1 + "четыре тысячи "
-        else return rus1 + "четыре"
-        k == 3 -> if (count == 4) return rus1 + "три тысячи "
-        else return rus1 + "три"
-        k == 2 -> if (count == 4) return rus1 + "две тысячи "
-        else return rus1 + "два"
-        else -> if (count == 4) return rus1 + "одна тысяча "
-        else return rus1 + "один"
+        k == 9 -> {
+            if (count == 4) return rus + "девять тысяч "
+            return rus + "девять"
+        }
+        k == 8 -> {
+            if (count == 4) return rus + "восемь тысяч "
+            return rus + "восемь"
+        }
+        k == 7 -> {
+            if (count == 4) return rus + "семь тысяч "
+            return rus + "семь"
+        }
+        k == 6 -> {
+            if (count == 4) return rus + "шесть тысяч "
+            return rus + "шесть"
+        }
+        k == 5 -> {
+            if (count == 4) return rus + "пять тысяч "
+            return rus + "пять"
+        }
+        k == 4 -> {
+            if (count == 4) return rus + "четыре тысячи "
+            return rus + "четыре"
+        }
+        k == 3 -> {
+            if (count == 4) return rus + "три тысячи "
+            return rus + "три"
+        }
+        k == 2 -> {
+            if (count == 4) return rus + "две тысячи "
+            return rus + "два"
+        }
+        else -> {
+            if (count == 4) return rus + "одна тысяча "
+            return rus + "один"
+        }
     }
-    //if (count == 4) return rus1 + "тысяч "
-    return rus1
+    return rus
 }
-
-//fun delete(rus : String): String {
-//    var lastSymbol = rus.last()
-//    var rus1 = ""
-//    if (lastSymbol == ' ') for (i in 0..rus.length-2) rus1 += rus[i]
-//    return rus1
-//}
 
 fun russian(n: Int): String {
     var rus = ""
@@ -456,7 +460,7 @@ fun russian(n: Int): String {
         n1 /= 10
         count++
     }
-    var count2 = count
+    val count2 = count
     while (count != 0) {
         when {
             count == 6 || count == 3 -> {

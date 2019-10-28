@@ -235,12 +235,10 @@ fun squareSequenceDigit(n: Int): Int {
     var squareA = 0
     var countDigit = 0
     var count = 0
-    var squareA1 = 0
     var digit = 0
-    while (sumDigit != n){
+    while (sumDigit != n) {
         squareA = a * a
-        squareA1 =squareA
-        countDigit =  digitNumber (squareA1)
+        countDigit = digitNumber(squareA)
         sumDigit += countDigit
         countDigit = 0
         if (sumDigit == n) return squareA % 10
