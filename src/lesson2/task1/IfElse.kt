@@ -92,12 +92,7 @@ fun whichRookThreatens(
     kingX: Int, kingY: Int,
     rookX1: Int, rookY1: Int,
     rookX2: Int, rookY2: Int
-): Int =
-    if (kingX == rookX1 || kingY == rookY1) {
-        if (rookX2 == kingX || rookY2 == kingY)  3
-        else 1
-    } else 2
-
+): Int = TODO()
 
 /**
  * Простая
