@@ -2,6 +2,9 @@
 
 package lesson6.task1
 
+import lesson2.task2.daysInMonth
+import java.lang.NumberFormatException
+
 /**
  * Пример
  *
@@ -69,7 +72,47 @@ fun main() {
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30.02.2009) считается неверными
  * входными данными.
  */
-fun dateStrToDigit(str: String): String = TODO()
+fun dateStrToDigit(str: String): String {
+    val parts = str.split(" ")
+    var count = 0
+    var part1 = 0
+    var part3 = 0
+    var part21 = 0
+    if (str.length < 10) return ""
+    for (part in parts) {
+        if (count == 0) {
+            part1 = part.toInt()
+            count++
+        } else if (count == 1) {
+            when (part.toString()) {
+                "января" -> part21 = 1
+                "февраля" -> part21 = 2
+                "марта" -> part21 = 3
+                "апреля" -> part21 = 4
+                "мая" -> part21 = 5
+                "июня" -> part21 = 6
+                "июля" -> part21 = 7
+                "августа" -> part21 = 8
+                "сентября" -> part21 = 9
+                "октября" -> part21 = 10
+                "ноября" -> part21 = 11
+                "декабря" -> part21 = 12
+                else -> return ""
+            }
+            count++
+        } else part3 = part.toInt()
+    }
+    var rezult = ""
+    var days = daysInMonth(part21, part3)
+    if (part1 <= days) {
+        if (part1 < 10) rezult += "0" + part1.toString() + "."
+        else rezult += part1.toString() + "."
+        if (part21 < 10) rezult += "0" + part21.toString() + "."
+        else rezult += part21.toString() + "."
+        rezult += part3.toString()
+        return rezult
+    } else return ""
+}
 
 /**
  * Средняя
@@ -81,7 +124,45 @@ fun dateStrToDigit(str: String): String = TODO()
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30 февраля 2009) считается неверными
  * входными данными.
  */
-fun dateDigitToStr(digital: String): String = TODO()
+fun dateDigitToStr(digital: String): String {
+    var parts = digital.split(".")
+    var count = 0
+    var part1 = 0
+    var part3 = 0
+    var part21 = ""
+    var part2 = 0
+    if (digital.length != 10) return ""
+    for (part in parts) {
+        if (count == 0) {
+            part1 = part.toInt()
+            count++
+        } else if (count == 1) {
+            part2 = part.toInt()
+            when (part.toString()) {
+                "01" -> part21 = "января"
+                "02" -> part21 = "февраля"
+                "03" -> part21 = "марта"
+                "04" -> part21 = "апреля"
+                "05" -> part21 = "мая"
+                "06" -> part21 = "июня"
+                "07" -> part21 = "июля"
+                "08" -> part21 = "августа"
+                "09" -> part21 = "сентября"
+                "10" -> part21 = "октября"
+                "11" -> part21 = "ноября"
+                "12" -> part21 = "декабря"
+                else -> return ""
+            }
+            count++
+        } else part3 = part.toInt()
+    }
+    var rezult = ""
+    var days = daysInMonth(part2, part3)
+    if (part1 <= days) {
+        rezult += part1.toString() + " " + part21.toString() + " " + part3.toString()
+        return rezult
+    } else return ""
+}
 
 /**
  * Средняя
@@ -97,7 +178,10 @@ fun dateDigitToStr(digital: String): String = TODO()
  *
  * PS: Дополнительные примеры работы функции можно посмотреть в соответствующих тестах.
  */
-fun flattenPhoneNumber(phone: String): String = TODO()
+fun flattenPhoneNumber(phone: String): String {
+    var rezult = phone
+    return rezult
+}
 
 /**
  * Средняя
@@ -144,7 +228,25 @@ fun plusMinus(expression: String): Int = TODO()
  * Вернуть индекс начала первого повторяющегося слова, или -1, если повторов нет.
  * Пример: "Он пошёл в в школу" => результат 9 (индекс первого 'в')
  */
-fun firstDuplicateIndex(str: String): Int = TODO()
+fun firstDuplicateIndex(str: String): Int {
+    var parts = str.split(" ")
+    var first = ""
+    var last = ""
+    var size = 0
+    var count = 0
+    val allSize = str.length
+    for (part in parts) {
+        last = part.toLowerCase()
+        if (last == first) {
+            return size - 1 - first.length
+        } else if (count != 0) size += last.length + 1
+        else size += last.length + 1
+        first = last
+        count++
+    }
+    if (allSize == size - 1) return -1
+    else return size
+}
 
 /**
  * Сложная
@@ -157,7 +259,38 @@ fun firstDuplicateIndex(str: String): Int = TODO()
  * или пустую строку при нарушении формата строки.
  * Все цены должны быть больше либо равны нуля.
  */
-fun mostExpensive(description: String): String = TODO()
+fun mostExpensive(description: String): String {
+    val parts = description.split("; ")
+    var count = 0
+    var listPrice = mutableListOf<Double>()
+    var listName = mutableListOf<String>()
+    if (description.isEmpty()) return ""
+    for (part in parts) {
+        val parts1 = part.split(" ")
+        for (part1 in parts1) {
+            if (count == 0) {
+                listName.add(part1.toString())
+            } else {
+                listPrice.add(part1.toDouble())
+            }
+            count++
+        }
+        count = 0
+    }
+    var beforeMax = 0.0
+    var max = listPrice[0]
+    var imax = 0
+    var iBeforeMax = -1
+    for (i in 1..listPrice.size - 1) {
+        if (listPrice[i] >= max) {
+            beforeMax = max
+            iBeforeMax = imax
+            max = listPrice[i]
+            imax = i
+        }
+    }
+    return listName[imax]
+}
 
 /**
  * Сложная
