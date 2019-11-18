@@ -37,11 +37,23 @@ fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean = TODO()
  * Дан номер месяца (от 1 до 12 включительно) и год (положительный).
  * Вернуть число дней в этом месяце этого года по григорианскому календарю.
  */
-fun daysInMonth(month: Int, year: Int): Int = when {
-    month in 1..7 step 2 || month in 8..12 step 2 -> 31
-    month in 4..6 step 2 || month in 9..11 step 2 -> 30
-    month == 2 && year % 4 == 0 && year % 100 != 0 || month == 2 && year % 100 == 0 && year % 400 == 0 -> 29
-    else -> 28
+fun daysInMonth(month: Int, year: Int): Int {
+    when (month) {
+        1 -> return 31
+        2 -> if (year % 4 == 0 && year % 100 != 0 || year % 100 == 0 && year % 400 == 0) return 29
+        else return 28
+        3 -> return 31
+        4 -> return 30
+        5 -> return 31
+        6 -> return 30
+        7 -> return 31
+        8 -> return 31
+        9 -> return 30
+        10 -> return 31
+        11 -> return 30
+        12 -> return 31
+    }
+    return 0
 }
 
 /**
