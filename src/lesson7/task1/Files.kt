@@ -2,6 +2,7 @@
 
 package lesson7.task1
 
+import lesson3.task1.digitNumber
 import java.io.File
 
 /**
@@ -53,7 +54,25 @@ fun alignFile(inputName: String, lineLength: Int, outputName: String) {
  * Регистр букв игнорировать, то есть буквы е и Е считать одинаковыми.
  *
  */
-fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> = TODO()
+fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
+    TODO()
+//    var rez : MutableMap<String, Int>
+//    val outputStream = File(inputName).bufferedWriter()
+//    substrings.toMutableList<String>()
+//    //        var pair : Pair<String, Int>
+//    //        pair = (substrings[i] to 0)
+//    //        rez + pair
+//        //for (i in list.indices //0 until substrings.size - 1) {
+//        //rez[substrings[i]] = 0
+//        for (line in File(inputName).readLines()) {
+//            for (i in 0 until substrings.size) {
+//               // if ()
+//            }
+//        }
+//   // }
+//
+//
+}
 
 
 /**
@@ -91,7 +110,27 @@ fun sibilants(inputName: String, outputName: String) {
  *
  */
 fun centerFile(inputName: String, outputName: String) {
-    TODO()
+    var line1 = mutableListOf<String>()
+    var output = File(outputName).bufferedWriter()
+    var max = -1
+    for (line in File(inputName).readLines()) {
+        var lin = line.trim()
+        line1 + lin
+        if (lin.length > max) max = lin.length
+
+    }
+    for (line in File(inputName).readLines()) {
+        var lin = line.trim().length
+        var k = (max - lin) / 2
+        var lin1 = line.trim().padStart(lin + k)
+//        while (k >= 1) {
+//            output.write(" ")
+//            k--
+//        }
+        output.write("$lin1")
+        output.newLine()
+    }
+    output.close()
 }
 
 /**
@@ -209,7 +248,31 @@ fun transliterate(inputName: String, dictionary: Map<Char, String>, outputName: 
  * Обратите внимание: данная функция не имеет возвращаемого значения
  */
 fun chooseLongestChaoticWord(inputName: String, outputName: String) {
-    TODO()
+    var output = File(outputName).bufferedWriter()
+    var words = mutableListOf<String>()
+    var rez = mutableListOf<String>()
+    var max = -1
+    var i = 0
+    var pmax = -1
+    for (word in File(inputName).readLines()) {
+        words.add(word)
+    }
+    for (j in 0..i - 1) {
+        val word = words[j]
+        if (word.length == word.toLowerCase().toSet().size && word.length >= max) {
+            if (max == pmax && word !in rez) {
+                rez.add(word)
+                pmax == max
+            } else {
+                pmax = max
+                max = word.length
+                rez.clear()
+                rez.add(word)
+            }
+        }
+    }
+    output.write(rez.joinToString())
+    output.close()
 }
 
 /**
@@ -401,8 +464,70 @@ fun markdownToHtml(inputName: String, outputName: String) {
  2350
  *
  */
+
 fun printMultiplicationProcess(lhv: Int, rhv: Int, outputName: String) {
-    TODO()
+    var output = File(outputName).bufferedWriter()
+    var n = digitNumber(lhv * rhv)
+    var count = 0
+    var rhv1 = rhv
+    var n1 = n
+    var k = 0
+    while (n1 - digitNumber(lhv) >= 0) {
+        output.write(" ")
+        n1--
+    }
+    output.write("$lhv")
+    output.newLine()
+    output.write("*")
+    n1 = n
+    while (n1 - 1 - digitNumber(rhv) >= 0) {
+        output.write(" ")
+        n1--
+    }
+    output.write("$rhv")
+    output.newLine()
+    n1 = n
+    while (n1 >= 0) {
+        n1--
+        output.write("-")
+    }
+    output.newLine()
+    while (rhv1 != 0) {
+        n1 = n
+        var digitRhf = rhv1 % 10
+        when (count) {
+            0 -> {
+                while (n1 - digitNumber(digitRhf * lhv) >= 0) {
+                    output.write(" ")
+                    n1--
+                }
+                k = digitRhf * lhv
+                output.write("$k")
+            }
+            else -> {
+                output.write("+")
+                while (n1 - 1 - count - digitNumber(digitRhf * lhv) >= 0) {
+                    output.write(" ")
+                    n1--
+                }
+                k = digitRhf * lhv
+                output.write("$k")
+            }
+        }
+        count++
+        rhv1 /= 10
+        output.newLine()
+    }
+    n1 = n
+    while (n1 >= 0) {
+        n1--
+        output.write("-")
+    }
+    output.newLine()
+    output.write(" ")
+    k = rhv * lhv
+    output.write("$k")
+    output.close()
 }
 
 

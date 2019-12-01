@@ -125,7 +125,7 @@ fun dateStrToDigit(str: String): String {
  * входными данными.
  */
 fun dateDigitToStr(digital: String): String {
-    var parts = digital.split(".")
+    val parts = digital.split(".")
     var count = 0
     var part1 = 0
     var part3 = 0
@@ -138,7 +138,7 @@ fun dateDigitToStr(digital: String): String {
             count++
         } else if (count == 1) {
             part2 = part.toInt()
-            when (part.toString()) {
+            when (part) {
                 "01" -> part21 = "января"
                 "02" -> part21 = "февраля"
                 "03" -> part21 = "марта"
@@ -179,8 +179,7 @@ fun dateDigitToStr(digital: String): String {
  * PS: Дополнительные примеры работы функции можно посмотреть в соответствующих тестах.
  */
 fun flattenPhoneNumber(phone: String): String {
-    var rezult = phone
-    return rezult
+    TODO()
 }
 
 /**
@@ -229,19 +228,15 @@ fun plusMinus(expression: String): Int = TODO()
  * Пример: "Он пошёл в в школу" => результат 9 (индекс первого 'в')
  */
 fun firstDuplicateIndex(str: String): Int {
-    var parts = str.split(" ")
-    var first = ""
-    var last = ""
+    val parts = str.split(" ")
     var size = 0
     var count = 0
     val allSize = str.length
-    for (part in parts) {
-        last = part.toLowerCase()
-        if (last == first) {
-            return size - 1 - first.length
-        } else if (count != 0) size += last.length + 1
-        else size += last.length + 1
-        first = last
+    for (part in 0..parts.size - 1) {
+        if (parts[part] == parts[part + 1]) {
+            return size - 1 + parts[part + 1].length
+        } else if (count != 0) size += parts[part + 1].length
+        else size += parts[part].length + 1
         count++
     }
     if (allSize == size - 1) return -1
