@@ -4,6 +4,7 @@ package lesson7.task1
 
 import lesson3.task1.digitNumber
 import java.io.File
+import java.util.*
 
 /**
  * Пример
@@ -321,9 +322,75 @@ Suspendisse ~~et elit in enim tempus iaculis~~.
  * (Отступы и переносы строк в примере добавлены для наглядности, при решении задачи их реализовывать не обязательно)
  */
 fun markdownToHtmlSimple(inputName: String, outputName: String) {
-    TODO()
+    val oper = Stack<String>()
+    val writer = StringBuilder()
+    writer.append("<html><body><p>")
+    val strings = File(inputName).readLines()
+    for (str in strings) {
+        if (str.isEmpty()) writer.append("</p>")
+        writer.append(toHTMLTags(str, oper))
+        if (str.isEmpty()) writer.append("<p>")
+    }
+    writer.append("</p></body></html>")
+    File(outputName).writeText(writer.toString())
+
 }
 
+fun toHTMLTags(str: String, oper: Stack<String>): String {
+
+    val text = StringBuilder()
+    var i = 0
+    while (i < str.length) {
+        when (str[i]) {
+            '*' -> if (i + 1 != str.length)
+                if (str[i + 1] == '*') {
+                    if (!oper.empty() && oper.peek() === "**") {
+                        text.append("</b>")
+                        oper.pop()
+                    } else {
+                        oper.push("**")
+                        text.append("<b>")
+                    }
+                    i++
+                } else {
+                    if (!oper.empty() && oper.peek() === "*") {
+                        text.append("</i>")
+                        oper.pop()
+                    } else {
+                        oper.push("*")
+                        text.append("<i>")
+                    }
+                }
+            else {
+                if (!oper.empty() && oper.peek() === "*") {
+                    text.append("</i>")
+                    oper.pop()
+                } else {
+                    oper.push("*")
+                    text.append("<b>")
+                }
+            }
+            '~' -> if (i + 1 != str.length && str[i + 1] == '~')
+                if (str[i + 1] == '~')
+                    if (!oper.empty() && oper.peek() === "~~") {
+                        text.append("</s>")
+                        oper.pop()
+                        i++
+                    } else {
+                        oper.push("~~")
+                        text.append("<s>")
+                        i++
+                    }
+                else
+                    text.append("~")
+            else
+                text.append("~")
+            else -> text.append(str[i].toString())
+        }
+        i++
+    }
+    return text.toString()
+}
 /**
  * Сложная
  *
