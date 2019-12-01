@@ -359,7 +359,7 @@ fun forSixAndThree(rewers: Int, count: Int, rus: String, count2: Int): String {
         3 -> rus1 += "триста "
         2 -> rus1 += "двести "
         0 -> rus1
-        else -> rus1 + "сто "
+        else -> rus1 += "сто "
     }
     return rus1
 }
@@ -412,39 +412,39 @@ fun forFourAndOne(rewers: Int, count: Int, rus: String, count2: Int): String {
     when (k) {
         9 -> {
             if (count == 4) rus1 += "девять тысяч "
-            rus1 += "девять"
+            else rus1 += "девять"
         }
         8 -> {
             if (count == 4) rus1 += "восемь тысяч "
-            rus1 += "восемь"
+            else rus1 += "восемь"
         }
         7 -> {
             if (count == 4) rus1 += "семь тысяч "
-            rus1 += "семь"
+            else rus1 += "семь"
         }
         6 -> {
             if (count == 4) rus1 += "шесть тысяч "
-            rus1 += "шесть"
+            else rus1 += "шесть"
         }
         5 -> {
             if (count == 4) rus1 += "пять тысяч "
-            rus1 += "пять"
+            else rus1 += "пять"
         }
         4 -> {
             if (count == 4) rus1 += "четыре тысячи "
-            rus1 += "четыре"
+            else rus1 += "четыре"
         }
         3 -> {
             if (count == 4) rus1 += "три тысячи "
-            rus1 += "три"
+            else rus1 += "три"
         }
         2 -> {
             if (count == 4) rus1 += "две тысячи "
-            rus1 += "два"
+            else rus1 += "два"
         }
         else -> {
             if (count == 4) rus1 += "одна тысяча "
-            rus1 += "один"
+            else rus1 += "один"
         }
     }
     return rus1
