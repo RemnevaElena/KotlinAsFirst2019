@@ -193,7 +193,6 @@ fun isPalindrome(n: Int): Boolean {
     var digitNClone = 0
     var nClone = n
     var count = 0
-    var count2 = 1
     var count3 = 0
     while (nClone != 0) {
         nContrary = nContrary * 10 + nClone % 10
@@ -201,13 +200,7 @@ fun isPalindrome(n: Int): Boolean {
         count++
     }
     nClone = n
-    for (count2 in 1..count / 2){
-        if (nContrary % 10 == nClone % 10) count3++
-        else return false
-        nContrary /= 10
-        nClone /= 10
-    }
-    if (count3 == count /2) return true
+    if (nClone == nContrary) return true
     else return false
 }
 

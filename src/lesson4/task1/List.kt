@@ -128,8 +128,7 @@ fun abs(v: List<Double>): Double {
  *
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
-fun mean(list: List<Double>): Double = TODO()
-
+fun mean(list: List<Double>): Double = if (list.isEmpty()) 0.0 else (list.sum() / list.size)
 /**
  * Средняя
  *
@@ -409,43 +408,16 @@ fun forFourAndOne(rewers: Int, count: Int, rus: String, count2: Int): String {
     if (k == 0 && count == 4) return rus + "тысяч "
     if (k == 0 && count == 1) return rus
     var rus1 = rus
-    when (k) {
-        9 -> {
-            if (count == 4) rus1 += "девять тысяч "
-            else rus1 += "девять"
-        }
-        8 -> {
-            if (count == 4) rus1 += "восемь тысяч "
-            else rus1 += "восемь"
-        }
-        7 -> {
-            if (count == 4) rus1 += "семь тысяч "
-            else rus1 += "семь"
-        }
-        6 -> {
-            if (count == 4) rus1 += "шесть тысяч "
-            else rus1 += "шесть"
-        }
-        5 -> {
-            if (count == 4) rus1 += "пять тысяч "
-            else rus1 += "пять"
-        }
-        4 -> {
-            if (count == 4) rus1 += "четыре тысячи "
-            else rus1 += "четыре"
-        }
-        3 -> {
-            if (count == 4) rus1 += "три тысячи "
-            else rus1 += "три"
-        }
-        2 -> {
-            if (count == 4) rus1 += "две тысячи "
-            else rus1 += "два"
-        }
-        else -> {
-            if (count == 4) rus1 += "одна тысяча "
-            else rus1 += "один"
-        }
+    rus1 += when (k) {
+        9 -> if (count == 4) "девять тысяч " else "девять"
+        8 -> if (count == 4) "восемь тысяч " else "восемь"
+        7 -> if (count == 4) "семь тысяч " else "семь"
+        6 -> if (count == 4) "шесть тысяч " else "шесть"
+        5 -> if (count == 4) "пять тысяч " else "пять"
+        4 -> if (count == 4) "четыре тысячи " else "четыре"
+        3 -> if (count == 4) "три тысячи " else "три"
+        2 -> if (count == 4) "две тысячи " else "два"
+        else -> if (count == 4) "одна тысяча " else "один"
     }
     return rus1
 }

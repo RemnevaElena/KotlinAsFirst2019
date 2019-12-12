@@ -74,44 +74,30 @@ fun main() {
  */
 fun dateStrToDigit(str: String): String {
     val parts = str.split(" ")
-    var count = 0
     var part1 = 0
     var part3 = 0
-    var part21 = 0
+    var part2 = 0
     if (str.length < 10) return ""
-    for (part in parts) {
-        if (count == 0) {
-            part1 = part.toInt()
-            count++
-        } else if (count == 1) {
-            when (part.toString()) {
-                "января" -> part21 = 1
-                "февраля" -> part21 = 2
-                "марта" -> part21 = 3
-                "апреля" -> part21 = 4
-                "мая" -> part21 = 5
-                "июня" -> part21 = 6
-                "июля" -> part21 = 7
-                "августа" -> part21 = 8
-                "сентября" -> part21 = 9
-                "октября" -> part21 = 10
-                "ноября" -> part21 = 11
-                "декабря" -> part21 = 12
-                else -> return ""
-            }
-            count++
-        } else part3 = part.toInt()
+    part1 = parts[1].toInt()
+    when (parts[2].toString()) {
+        "января" -> part2 = 1
+        "февраля" -> part2 = 2
+        "марта" -> part2 = 3
+        "апреля" -> part2 = 4
+        "мая" -> part2 = 5
+        "июня" -> part2 = 6
+        "июля" -> part2 = 7
+        "августа" -> part2 = 8
+        "сентября" -> part2 = 9
+        "октября" -> part2 = 10
+        "ноября" -> part2 = 11
+        "декабря" -> part2 = 12
+        else -> return ""
     }
+    part3 = parts[3].toInt()
     var rezult = ""
-    var days = daysInMonth(part21, part3)
-    if (part1 <= days) {
-        if (part1 < 10) rezult += "0" + part1.toString() + "."
-        else rezult += part1.toString() + "."
-        if (part21 < 10) rezult += "0" + part21.toString() + "."
-        else rezult += part21.toString() + "."
-        rezult += part3.toString()
-        return rezult
-    } else return ""
+    var days = daysInMonth(part2, part3)
+    return twoDigitStr(part1) + "." + twoDigitStr(part2) + "." + twoDigitStr(part3)
 }
 
 /**
