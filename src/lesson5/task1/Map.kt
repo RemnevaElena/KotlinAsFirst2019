@@ -200,7 +200,7 @@ fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): S
             name = k
         }
     }
-    if (name == "" || kind.isEmpty()) return null
+    if (name == "") return null
     return name
 }
 
