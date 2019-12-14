@@ -191,7 +191,18 @@ fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Doub
  *     "печенье"
  *   ) -> "Мария"
  */
-fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String? = TODO()
+fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String? {
+    var min = Double.MAX_VALUE
+    var name = ""
+    for ((k, v) in stuff) {
+        if (v.second <= min && kind == v.first) {
+            min = v.second
+            name = k
+        }
+    }
+    if (name == "") return null
+    return name
+}
 
 /**
  * Средняя
@@ -220,6 +231,18 @@ fun canBuildFrom(chars: List<Char>, word: String): Boolean {
  *   extractRepeats(listOf("a", "b", "a")) -> mapOf("a" to 2)
  */
 fun extractRepeats(list: List<String>): Map<String, Int> = TODO()
+//{
+//    var map = list.map{it.toLowerCase()}
+//    var list = list.toMutableList()
+//    var map = mutableMapOf<String, Int>()
+//    var count = 0
+//    for (i in 0 until list.size - 1) {
+//        for (j in i + 1 until list.size) if (list[i] == list[j]) count++
+//        if (count != 0) map.add(list[i], count)
+//        count = 0
+//    }
+//    return map
+//}
 
 /**
  * Средняя
