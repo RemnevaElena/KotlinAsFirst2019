@@ -4,6 +4,7 @@ package lesson6.task1
 
 import lesson2.task2.daysInMonth
 import java.lang.Exception
+import java.lang.IndexOutOfBoundsException
 import java.lang.NumberFormatException
 
 /**
@@ -253,7 +254,8 @@ fun mostExpensive(description: String): String {
     } catch (e: Exception) {
         return ""
     }
-    return shopList[shopList.indexOf(max.toString()) - 1]
+    return if (shopList.indexOf(max.toString()) == -1) shopList[shopList.indexOf(max.toInt().toString()) - 1]
+    else shopList[shopList.indexOf(max.toString()) - 1]
 }
 
 /**
