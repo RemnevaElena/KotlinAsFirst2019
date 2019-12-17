@@ -217,11 +217,13 @@ fun plusMinus(expression: String): Int = TODO()
  */
 fun firstDuplicateIndex(str: String): Int {
     val parts = str.toLowerCase().split(" ")
+    println(parts)
     var l = 0
     var ans = -1
     for (i in 0..parts.size - 2) {
         if (parts[i] == parts[i + 1]) {
             ans = str.toLowerCase().indexOf(parts[i], l)
+            break
         }
         l += parts[i].length + 1
     }
@@ -240,22 +242,22 @@ fun firstDuplicateIndex(str: String): Int {
  * Все цены должны быть больше либо равны нуля.
  */
 fun mostExpensive(description: String): String {
-    val parts = Regex(""";""").replace(description, "")
-    val shopList = parts.split(" ")
-    if (shopList.size < 2) return ""
+    val parts = description.split("; ")
+    var name = ""
     var max = 0.0
     try {
-        var i = 1
-        while (i < shopList.size) {
-            if (shopList[i].toDouble() < 0) return ""
-            if (shopList[i].toDouble() > max) max = shopList[i].toDouble()
-            i += 2
+        for (part in parts) {
+            val item = part.split(" ")
+            if (item[1].toDouble() < 0) return ""
+            if (item[1].toDouble() > max) {
+                max = item[1].toDouble()
+                name = item[0]
+            }
         }
     } catch (e: Exception) {
         return ""
     }
-    return if (shopList.indexOf(max.toString()) == -1) shopList[shopList.indexOf(max.toInt().toString()) - 1]
-    else shopList[shopList.indexOf(max.toString()) - 1]
+    return name
 }
 
 /**
