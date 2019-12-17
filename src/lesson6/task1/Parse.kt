@@ -3,6 +3,7 @@
 package lesson6.task1
 
 import lesson2.task2.daysInMonth
+import java.lang.Exception
 import java.lang.NumberFormatException
 
 /**
@@ -219,7 +220,6 @@ fun firstDuplicateIndex(str: String): Int {
     var last = ""
     var size = 0
     var count = 0
-    val allSize = str.length
     for (part in parts) {
         last = part.toLowerCase()
         if (last == first) {
@@ -229,7 +229,7 @@ fun firstDuplicateIndex(str: String): Int {
         first = last
         count++
     }
-    if (allSize == size - 1) return -1
+    if (str.length == size - 1) return -1
     else return size
 }
 
@@ -245,36 +245,21 @@ fun firstDuplicateIndex(str: String): Int {
  * Все цены должны быть больше либо равны нуля.
  */
 fun mostExpensive(description: String): String {
-    val parts = description.split("; ")
-    var count = 0
-    var listPrice = mutableListOf<Double>()
-    var listName = mutableListOf<String>()
-    if (description.isEmpty()) return ""
-    for (part in parts) {
-        val parts1 = part.split(" ")
-        for (part1 in parts1) {
-            if (count == 0) {
-                listName.add(part1.toString())
-            } else {
-                listPrice.add(part1.toDouble())
-            }
-            count++
+    val parts = Regex(""";""").replace(description, "")
+    val shopList = parts.split(" ")
+    if (shopList.size < 2) return ""
+    var max = 0.0
+    try {
+        var i = 1
+        while (i < shopList.size) {
+            if (shopList[i].toDouble() < 0) return ""
+            if (shopList[i].toDouble() > max) max = shopList[i].toDouble()
+            i += 2
         }
-        count = 0
+    } catch (e: Exception) {
+        return ""
     }
-    var beforeMax = 0.0
-    var max = listPrice[0]
-    var imax = 0
-    var iBeforeMax = -1
-    for (i in 1..listPrice.size - 1) {
-        if (listPrice[i] >= max) {
-            beforeMax = max
-            iBeforeMax = imax
-            max = listPrice[i]
-            imax = i
-        }
-    }
-    return listName[imax]
+    return shopList[shopList.indexOf(max.toString()) - 1]
 }
 
 /**
