@@ -245,7 +245,7 @@ fun mostExpensive(description: String): String {
     if (shopList.size < 2) return ""
     var max = 0.0
     try {
-        var i = 1
+        var i = 0
         while (i < shopList.size) {
             if (shopList[i].toDouble() < 0) return ""
             if (shopList[i].toDouble() > max) max = shopList[i].toDouble()
