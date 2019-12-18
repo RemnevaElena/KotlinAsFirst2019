@@ -199,7 +199,10 @@ fun lineByPoints(a: Point, b: Point): Line {
  *
  * Построить серединный перпендикуляр по отрезку или по двум точкам
  */
-fun bisectorByPoints(a: Point, b: Point): Line = TODO()
+fun bisectorByPoints(a: Point, b: Point): Line {
+    val c = Point((a.x + b.x) / 2, (a.y + b.y) / 2)
+    return Line(c, (lineByPoints(a, b).angle + PI / 2) % PI)
+}
 
 /**
  * Средняя
